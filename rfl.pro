@@ -33,8 +33,23 @@ door(cellar,bar).
 door(snakePit,outside).
 door(favreShrine,bego2).
 door(semiCab,outside).
+connect(X,Y) :- door(X,Y).
+connect(Y,X) :- door(Y,X).
 
 % Items found in rooms
 location(beer,bar).
 location(rockyMoutainOysters,bar).
 location(fishFry,bar).
+
+
+% Initial Player Location
+here(outside).
+
+% Tells us the player's location
+look :-
+	here(Place),
+	write('You are in the '), write(Place),nl,
+	write('You can see: '), nl,
+	list_things(Place),
+	write('You can go to: '), nl,
+	list_connections(Place).
